@@ -1,11 +1,12 @@
-import vue from '@vitejs/plugin-vue';
-import laravel from 'laravel-vite-plugin';
-import { defineConfig } from 'vite';
+import vue from "@vitejs/plugin-vue";
+import laravel from "laravel-vite-plugin";
+import { fileURLToPath, URL } from "url";
+import { defineConfig } from "vite";
 
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: ["resources/css/app.css", "resources/js/app.js"],
             refresh: true,
         }),
         vue({
@@ -27,4 +28,14 @@ export default defineConfig({
             },
         }),
     ],
+    resolve: {
+        alias: [
+            {
+                find: "@shared",
+                replacement: fileURLToPath(
+                    new URL("./resources/js/Shared", import.meta.url)
+                ),
+            },
+        ],
+    },
 });
