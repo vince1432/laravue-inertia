@@ -1,13 +1,21 @@
 import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createApp, h } from "vue";
+import Layout from "./Shared/Layout.vue";
 
 createInertiaApp({
-    resolve: (name) =>
-        resolvePageComponent(
+    resolve: (name) => {
+        const page = resolvePageComponent(
             `./Pages/${name}.vue`,
             import.meta.glob("./Pages/**/*.vue")
-        ),
+        );
+
+        page.then((module) => {
+            module.default.layout ??= Layout;
+        });
+
+        return page;
+    },
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
             .mixin({ methods: { route } })

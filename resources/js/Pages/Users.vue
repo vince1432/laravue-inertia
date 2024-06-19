@@ -1,7 +1,5 @@
 <template>
-  <Layout>
-    <h1>Users</h1>
-  </Layout>
+  <h1>Users</h1>
 
   <div style="margin-top: 800px">
     <p>The current time is {{ time }}</p>
@@ -12,8 +10,6 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import Layout from "@shared/Layout.vue";
-
 defineProps({
   time: String,
 });
