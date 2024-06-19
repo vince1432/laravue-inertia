@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <Layout>
     <h1>Settings</h1>
-  </div>
+  </Layout>
 </template>
 
-<script setup></script>
+<script setup>
+import Layout from "../Shared/Layout.vue";
+</script>
 
 <style lang="scss" scoped></style>
