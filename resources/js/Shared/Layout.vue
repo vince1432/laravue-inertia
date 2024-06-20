@@ -1,4 +1,12 @@
 <template>
+  <!-- head -->
+  <Head>
+    <meta
+      type="description"
+      content="Information About my app"
+      head-key="description"
+    />
+  </Head>
   <!-- header -->
   <section class="p-6 bg-gray-200">
     <header class="flex justify-between">

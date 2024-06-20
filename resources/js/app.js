@@ -1,4 +1,4 @@
-import { createInertiaApp } from "@inertiajs/vue3";
+import { Head, createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createApp, h } from "vue";
 import Layout from "./Shared/Layout.vue";
@@ -20,6 +20,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .mixin({ methods: { route } })
             .use(plugin)
+            .component("Head", Head)
             .mount(el);
     },
     progress: {
@@ -35,4 +36,5 @@ createInertiaApp({
         // Whether the NProgress spinner will be shown...
         showSpinner: true,
     },
+    title: (title) => `My app ${title}`,
 });
