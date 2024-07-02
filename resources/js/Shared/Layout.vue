@@ -33,7 +33,7 @@ import { computed } from "vue";
 const page = usePage();
 
 const username = computed(() => {
-  return page.props.auth.username;
+  return page.props.auth.user.username;
 });
 </script>
 

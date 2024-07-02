@@ -11,7 +11,8 @@ createInertiaApp({
         );
 
         page.then((module) => {
-            module.default.layout ??= Layout;
+            if (module.default.layout === undefined)
+                module.default.layout = Layout;
         });
 
         return page;
