@@ -11,7 +11,6 @@ Route::get('/', function () {
 });
 
 Route::get('/users', function () {
-    dd(Hash::make('Password01!'));
     // dd(User::paginate(10));
     return Inertia::render('Users/Index', [
         'users' => User::query()
@@ -27,7 +26,7 @@ Route::get('/users', function () {
 
 Route::get('/users/create', function () {
     return Inertia::render('Users/Create');
-});
+})->name('user.create');
 
 Route::post('/users', function () {
     //validate
