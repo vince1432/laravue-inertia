@@ -43,7 +43,7 @@
                 >
                   <Link
                     v-if="user.can.edit"
-                    :href="`/users/${user.id}/edit`"
+                    :href="`/users/edit/${user.id}`"
                     class="text-indigo-600 hover:text-indigo-900"
                   >
                     Edit</Link

@@ -11,7 +11,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        return $user->email === 'John@Doe2.com';
+        return $user->email === 'John@Doe.com';
     }
 
     public function edit(User $user, User $model): bool

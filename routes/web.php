@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('Users/Create');
     })->name('user.create')->can('create', 'App\Models\User');
 
+    Route::get('/users/edit/{user}', function (User $user) {
+        return Inertia::render('Users/Edit', ["data" => $user]);
+    })->name('user.create')->can('create', 'App\Models\User');
+
     Route::post('/users', function () {
         //validate
         $validated = request()->validate([
@@ -58,6 +62,25 @@ Route::middleware('auth')->group(function () {
 
         return redirect(route('user-list'));
     });
+
+    Route::patch('/users/{user}', function (User $user) {
+        //validate
+        $validated = request()->validate([
+            'name' => 'required',
+            'email' => ['required', 'email'],
+            'password' => ['string', 'nullable'],
+        ]);
+
+        //create user
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+
+        if(!empty($validated['password']))
+            $user->password = Hash::make($validated['password']);
+
+        $user->update();
+        return redirect(route('user-list'));
+    })->name('user-update');
 
 
     Route::get('/settings', function () {
