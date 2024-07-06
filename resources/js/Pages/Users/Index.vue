@@ -3,7 +3,11 @@
     <div class="flex items-center">
       <h1 class="text-4xl font-bold">Users</h1>
 
-      <Link href="/users/create" class="text-blue-500 text-sm ml-2">
+      <Link
+        v-if="can.createUser"
+        href="/users/create"
+        class="text-blue-500 text-sm ml-2"
+      >
         New User
       </Link>
     </div>
@@ -38,6 +42,7 @@
                   class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
                 >
                   <Link
+                    v-if="user.can.edit"
                     :href="`/users/${user.id}/edit`"
                     class="text-indigo-600 hover:text-indigo-900"
                   >
@@ -63,6 +68,7 @@ import { ref, watch } from "vue";
 const props = defineProps({
   users: Object,
   filters: Object,
+  can: Object,
 });
 
 const search = ref(props.filters.search);
